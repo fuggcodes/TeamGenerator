@@ -112,3 +112,35 @@ function addEngineer(val) {
         addEmployee();
     })
 }
+
+// After the user has input all employees desired, call the `render` function (required
+// above) and pass in an array containing all employee objects; the `render` function will
+// generate and return a block of HTML including templated divs for each employee!
+function addEmployee() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "confirm",
+                message: "Do you want to add another Employee",
+                choices: ["yes", "no"],
+            }
+        ]).then(function(answer) {
+            if(answer.confirm == "yes"){
+                getEmployeeInfo();
+            }
+            else
+            {
+                var html = render(group);
+
+                fs.writeFile(outputPath, html, function(err) {
+                    if(err) {
+                        return console.log(err);
+                    }
+
+                    console.log("group Html was rendered!");
+                });
+            }
+            
+        });
+}
