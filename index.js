@@ -62,3 +62,53 @@ function getEmployeeInfo() {
 }
 
 getEmployeeInfo();
+
+function addManager(val) {
+    return inquirer
+        .prompt([
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "what is your officeNumber?"
+        }
+    ]).then(answer => {
+        let manager = new Manager(val.name, val.id, val.email, answer.officeNumber);
+        group.push(manager);
+        console.log("added manager");
+        console.log(group);
+        addEmployee();
+    })
+}
+function addIntern(val) {
+        return inquirer
+            .prompt([
+            {
+                type: "input",
+                name: "school",
+                message: "what is your school name?"
+            }
+        ]).then(answer => {
+            let intern = new Intern(val.name, val.id, val.email, answer.school);
+            group.push(intern);
+            console.log("added Intern");
+            console.log(group);
+            addEmployee();
+        })
+}
+
+function addEngineer(val) {
+   return inquirer
+        .prompt([
+        {
+            type: "input",
+            name: "github",
+            message: "what is your github?"
+        }
+    ]).then(answer => {
+        let engineer = new Engineer(val.name, val.id, val.email, answer.github);
+        group.push(engineer);
+        console.log("added engineer");
+        console.log(group);
+        addEmployee();
+    })
+}
